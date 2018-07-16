@@ -124,7 +124,7 @@ class FineDiff {
      */
     public function __construct($from_text = '', $to_text = '', $granularityStack = null, $greed=4, $encoding = null) {
         // setup stack for generic text documents by default
-        $this->granularityStack = $granularityStack ? $granularityStack : static::$characterGranularity;
+        $this->granularityStack = $granularityStack ?: static::$characterGranularity;
         $this->edits = array();
         $this->from_text = $from_text;
         $this->greed = $greed;
@@ -670,7 +670,7 @@ class FineDiff {
             $encoding = mb_internal_encoding();
         }
         if($start || $length) {
-            $str = mb_substr($str, $start, $length ? $length : mb_strlen($str, $encoding) - $start, $encoding);
+            $str = mb_substr($str, $start, $length ?: mb_strlen($str, $encoding) - $start, $encoding);
         }
         if(preg_match('/^[' . preg_quote($delimiters, '/') . ']+/', $str, $m)) {
             return mb_strlen($m[0], $encoding);
