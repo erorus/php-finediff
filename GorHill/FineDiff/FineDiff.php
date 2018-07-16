@@ -296,7 +296,7 @@ class FineDiff {
         self::sentenceDelimiters,
         self::wordDelimiters
     );
-    const characterDelimiters = "";
+    const characterDelimiters = '';
     public static $characterGranularity = array(
         self::paragraphDelimiters,
         self::sentenceDelimiters,
@@ -305,9 +305,9 @@ class FineDiff {
     );
 
     public static $textStack = array(
-        ".",
+        '.',
         " \t.\n\r",
-        ""
+        ''
     );
 
     /**------------------------------------------------------------------------
