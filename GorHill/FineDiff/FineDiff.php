@@ -255,9 +255,9 @@ class FineDiff {
         while ( $opcodes_offset <  $opcodes_len ) {
             $opcode = mb_substr($opcodes, $opcodes_offset, 1, $encoding);
             $opcodes_offset++;
-            $n = intval(mb_substr($opcodes, $opcodes_offset, NULL, $encoding));
+            $n = (int)mb_substr($opcodes, $opcodes_offset, null, $encoding);
             if ( $n ) {
-                $opcodes_offset += mb_strlen(strval($n), $encoding);
+                $opcodes_offset += mb_strlen((string)$n, $encoding);
             }
             else {
                 $n = 1;

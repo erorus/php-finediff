@@ -123,7 +123,7 @@ $from = '';
 $to = '';
 $granularity = 2;
 if ( isset($_REQUEST['granularity']) && ctype_digit($_REQUEST['granularity']) ) {
-	$granularity = max(min(intval($_REQUEST['granularity']),4),0);
+	$granularity = max(min((int)$_REQUEST['granularity'], 4), 0);
 	}
 $rendered_diff = '';
 if ( !empty($_REQUEST['from']) || !empty($_REQUEST['to'])) {
@@ -142,7 +142,7 @@ else if ( !empty($_REQUEST['sample']) ) { // use sample text?
 	}
 $from_len = strlen($from);
 $to_len = strlen($to);
-$use_stdlib_diff = !empty($_REQUEST['stdlib']) && ctype_digit($_REQUEST['stdlib']) && intval($_REQUEST['stdlib']) === 1;
+$use_stdlib_diff = !empty($_REQUEST['stdlib']) && ctype_digit($_REQUEST['stdlib']) && (int)$_REQUEST['stdlib'] === 1;
 
 require_once 'Text/Diff.php';
 
@@ -240,7 +240,7 @@ if ( $edits !== false ) {
 		$opcodes_len += strlen($opcode);
 		$opcode = htmlentities($opcode);
 		if ( $edit instanceof FineDiffCopyOp ) {
-			$opcodes[] = "{$opcode}";
+			$opcodes[] = (string)($opcode);
 			}
 		else if ( $edit instanceof FineDiffDeleteOp ) {
 			$opcodes[] = "<span class=\"del\">{$opcode}</span>";

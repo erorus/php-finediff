@@ -75,7 +75,7 @@ if ( isset($_GET['data']) ) {
 // new diff
 else {
 	if ( isset($_POST['granularity']) && ctype_digit($_POST['granularity']) ) {
-		$granularity = max(min(intval($_POST['granularity']),4),0);
+		$granularity = max(min((int)$_POST['granularity'], 4), 0);
 	}
 	if ( $granularity == 4 ) {
 		mb_internal_encoding('8bit');
@@ -120,7 +120,7 @@ else {
 				if ( $num_files > $cache_hi_water_mark ) {
 					$sorted_files = array();
 					foreach ( $files as $file ) {
-						$sorted_files[strval(@filemtime("./cache/{$file}")).$file] = $file;
+                        $sorted_files[(string)@filemtime("./cache/{$file}") . $file] = $file;
 						}
 					ksort($sorted_files);
 					foreach ( $sorted_files as $file ) {
