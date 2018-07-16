@@ -263,15 +263,15 @@ class FineDiff {
                 $n = 1;
             }
             if ( $opcode === 'c' ) { // copy n characters from source
-                call_user_func($callback, 'c', $from, $from_offset, $n, $encoding, $textToEntities);
+                $callback('c', $from, $from_offset, $n, $encoding, $textToEntities);
                 $from_offset += $n;
             }
             else if ( $opcode === 'd' ) { // delete n characters from source
-                call_user_func($callback, 'd', $from, $from_offset, $n, $encoding, $textToEntities);
+                $callback('d', $from, $from_offset, $n, $encoding, $textToEntities);
                 $from_offset += $n;
             }
             else /* if ( $opcode === 'i' ) */ { // insert n characters from opcodes
-                call_user_func($callback, 'i', $opcodes, $opcodes_offset + 1, $n, $encoding, $textToEntities);
+                $callback('i', $opcodes, $opcodes_offset + 1, $n, $encoding, $textToEntities);
                 $opcodes_offset += 1 + $n;
             }
         }
