@@ -240,7 +240,7 @@ if ( $edits !== false ) {
 		$opcodes_len += strlen($opcode);
 		$opcode = htmlentities($opcode);
 		if ( $edit instanceof FineDiffCopyOp ) {
-			$opcodes[] = (string)$opcode;
+			$opcodes[] = $opcode;
 			}
 		else if ( $edit instanceof FineDiffDeleteOp ) {
 			$opcodes[] = "<span class=\"del\">{$opcode}</span>";
