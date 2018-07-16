@@ -57,5 +57,4 @@ class FineDiffOps {
             $edits[] = new FineDiffInsertOp(mb_substr($from, $from_offset, $from_len, $encoding), $encoding);
         }
     }
-    public $edits = array();
 }
