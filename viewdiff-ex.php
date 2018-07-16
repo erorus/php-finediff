@@ -87,7 +87,10 @@ code {
 <a href="https://github.com/gorhill/PHP-FineDiff"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 <h1>PHP Fine Diff</h1>
 <div>
-<p style="margin-right:5em">This page demonstrate the <a href="finediff-code.php"><code>FineDiff</code></a> class (as in &ldquo;<b>fine</b> granularity <b>diff</b>&rdquo;) I wrote &ndash; starting from scratch &ndash; to generate a <u>lossless</u> (won't eat your line breaks), <u>compact</u> opcodes string listing the sequence of atomic actions (copy/delete/insert) necessary to transform one string into another (thereafter referred as the &ldquo;From&rdquo; and &ldquo;To&rdquo; string). The &ldquo;To&rdquo; string can be rebuilt by running the opcodes string on the &ldquo;From&rdquo; string. The <code>FineDiff</code> class allows to specify the granularity, and up to character-level granularity is possible, in order to generate the smallest diff possible (at the <i>potential</i> cost of increased CPU cycles.)</p>
+<p style="margin-right:5em">This page demonstrate the <a href="finediff-code.php"><code>FineDiff</code></a> class (as in &ldquo;<span style="font-weight: bold;">fine</span> granularity <span
+            style="font-weight: bold;">diff</span>&rdquo;) I wrote &ndash; starting from scratch &ndash; to generate a <span style="text-decoration: underline;">lossless</span> (won't eat your line breaks), <span
+            style="text-decoration: underline;">compact</span> opcodes string listing the sequence of atomic actions (copy/delete/insert) necessary to transform one string into another (thereafter referred as the &ldquo;From&rdquo; and &ldquo;To&rdquo; string). The &ldquo;To&rdquo; string can be rebuilt by running the opcodes string on the &ldquo;From&rdquo; string. The <code>FineDiff</code> class allows to specify the granularity, and up to character-level granularity is possible, in order to generate the smallest diff possible (at the <span
+            style="font-style: italic;">potential</span> cost of increased CPU cycles.)</p>
 <p>Typical usage:</p>
 <p class="code">
 include '<a href="finediff-code.php">finediff.php</a>';<br>
@@ -263,12 +266,12 @@ else {
 <p id="params">Granularity:<input name="granularity" type="radio" value="0"<?php if ( $granularity === 0 ) { echo ' checked="checked"'; } ?>>&thinsp;Paragraph/lines&ensp;<input name="granularity" type="radio" value="1"<?php if ( $granularity === 1 ) { echo ' checked="checked"'; } ?>>&thinsp;Sentence&ensp;<input name="granularity" type="radio" value="2"<?php if ( $granularity === 2 ) { echo ' checked="checked"'; } ?>>&thinsp;Word&ensp;<input name="granularity" type="radio" value="3"<?php if ( $granularity === 3 ) { echo ' checked="checked"'; } ?>>&thinsp;Character&ensp;<input name="granularity" type="radio" value="4"<?php if ( $granularity === 4 ) { echo ' checked="checked"'; } ?>>&thinsp;Binary&emsp;<!-- <input name="XDEBUG_PROFILE" type="hidden" value=""> --><input type="submit" value="Compute diff">&emsp;<input name="stdlib" type="checkbox" value="1"<?php if ( $use_stdlib_diff ) { echo ' checked="checked"'; } ?>><a href="http://pear.php.net/package/Text_Diff/"><code>Text_Diff</code></a> lib (for comparison purpose) <sup style="font-size:x-small"><a href="#notes">see notes</a></sup></p>
 </form>
 <div class="panecontainer"><p>Diff stats:</p><div><div class="pane">
-<b>Diff execution time:</b> <?php echo $exec_time; ?><br>
-<b>Diff execution + rendering time:</b> <?php echo $rendering_time; ?><br>
-<b>&quot;From&quot; size:</b> <?php echo $from_len; ?> bytes<br>
-<b>&quot;To&quot; size:</b> <?php echo $to_len; ?> bytes<br>
-<b>Diff opcodes size:</b> <?php echo $opcodes_len; ?><br>
-<b>Diff opcodes (<span style="border:1px solid #ccc;display:inline-block;width:16px">&nbsp;</span>=copy, <span class="del" style="display:inline-block;width:16px">&nbsp;</span>=delete, <span class="ins" style="display:inline-block;width:16px">&nbsp;</span>=insert, <span class="rep" style="display:inline-block;width:16px">&nbsp;</span>=replace):</b>
+<span style="font-weight: bold;">Diff execution time:</span> <?php echo $exec_time; ?><br>
+<span style="font-weight: bold;">Diff execution + rendering time:</span> <?php echo $rendering_time; ?><br>
+<span style="font-weight: bold;">&quot;From&quot; size:</span> <?php echo $from_len; ?> bytes<br>
+<span style="font-weight: bold;">&quot;To&quot; size:</span> <?php echo $to_len; ?> bytes<br>
+<span style="font-weight: bold;">Diff opcodes size:</span> <?php echo $opcodes_len; ?><br>
+<span style="font-weight: bold;">Diff opcodes (<span style="border:1px solid #ccc;display:inline-block;width:16px">&nbsp;</span>=copy, <span class="del" style="display:inline-block;width:16px">&nbsp;</span>=delete, <span class="ins" style="display:inline-block;width:16px">&nbsp;</span>=insert, <span class="rep" style="display:inline-block;width:16px">&nbsp;</span>=replace):</span>
 <div style="margin:2px 0 2px 0;border:0;border-top:1px dotted #aaa;padding-top:4px;word-wrap:break-word"><?php echo $opcodes; ?></div>
 </div></div></div>
 <div class="panecontainer"><p>Rendered Diff:&emsp;<span style="font-size:smaller">Show <input type="radio" name="htmldiffshow" onclick="setHTMLDiffVisibility('deletions');">Deletions only&ensp;<input type="radio" name="htmldiffshow" checked="checked" onclick="setHTMLDiffVisibility();">All&ensp;<input type="radio" name="htmldiffshow" onclick="setHTMLDiffVisibility('insertions');">Insertions only</span></p>
