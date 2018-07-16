@@ -228,7 +228,7 @@ else {
 	$diff = new FineDiff($from, $to, $granularityStacks[$granularity]);
 	$edits = $diff->getOps();
 	$exec_time = sprintf('%.3f sec', gettimeofday(true) - $start_time);
-	$rendered_diff = $diff->renderDiffToHTML(($granularity != 4));
+	$rendered_diff = $diff->renderDiffToHTML($granularity != 4);
 	$rendering_time = sprintf('%.3f sec', gettimeofday(true) - $start_time);
 	}
 

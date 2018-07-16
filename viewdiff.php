@@ -146,7 +146,7 @@ else {
 		}
 	}
 
-$rendered_diff = FineDiffHTML::renderDiffToHTMLFromOpcodes($from_text, $diff_opcodes, null, ($granularity != 4));
+$rendered_diff = FineDiffHTML::renderDiffToHTMLFromOpcodes($from_text, $diff_opcodes, null, $granularity != 4);
 $from_len = strlen($from_text);
 $to_len = strlen($to_text);
 
