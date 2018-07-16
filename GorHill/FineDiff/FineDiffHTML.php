@@ -45,7 +45,7 @@ class FineDiffHTML extends FineDiff {
             $encoding = mb_internal_encoding();
         }
         ob_start();
-        FineDiff::renderFromOpcodes($from, $opcodes, array('\GorHill\FineDiff\FineDiffHTML','renderDiffToHTMLFromOpcode'), $encoding, $textToEntities);
+        FineDiff::renderFromOpcodes($from, $opcodes, array(\GorHill\FineDiff\FineDiffHTML::class, 'renderDiffToHTMLFromOpcode'), $encoding, $textToEntities);
         return ob_get_clean();
     }
 

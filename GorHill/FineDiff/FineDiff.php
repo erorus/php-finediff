@@ -230,7 +230,7 @@ class FineDiff {
             $encoding = mb_internal_encoding();
         }
         ob_start();
-        static::renderFromOpcodes($from, $opcodes, array('\GorHill\FineDiff\FineDiff','renderToTextFromOpcode'), $encoding);
+        static::renderFromOpcodes($from, $opcodes, array(\GorHill\FineDiff\FineDiff::class, 'renderToTextFromOpcode'), $encoding);
         return ob_get_clean();
     }
 
