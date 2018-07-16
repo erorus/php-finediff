@@ -34,6 +34,11 @@ class FineDiffHTML extends FineDiff {
 
     /**------------------------------------------------------------------------
      * Render the diff to an HTML string
+     * @param      $from
+     * @param      $opcodes
+     * @param null $encoding
+     * @param bool $textToEntities
+     * @return string
      */
     public static function renderDiffToHTMLFromOpcodes($from, $opcodes, $encoding = null, $textToEntities=true) {
         if ($encoding === null) {

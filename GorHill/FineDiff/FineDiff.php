@@ -110,13 +110,17 @@ class FineDiff {
     public $encoding;
     public $greed;
 
-
     /**
      * Constructor
      * ...
      * The $granularityStack allows FineDiff to be configurable so that
      * a particular stack tailored to the specific content of a document can
      * be passed.
+     * @param string $from_text
+     * @param string $to_text
+     * @param null   $granularityStack
+     * @param int    $greed
+     * @param null   $encoding
      */
     public function __construct($from_text = '', $to_text = '', $granularityStack = null, $greed=4, $encoding = null) {
         // setup stack for generic text documents by default
@@ -184,6 +188,12 @@ class FineDiff {
     /**------------------------------------------------------------------------
      * Return an opcodes string describing the diff between a "From" and a
      * "To" string
+     * @param      $from
+     * @param      $to
+     * @param null $granularities
+     * @param int  $greed
+     * @param null $encoding
+     * @return string
      */
     public static function getDiffOpcodes($from, $to, $granularities = null, $greed=4, $encoding = null) {
         if ($encoding === null) {
@@ -195,6 +205,9 @@ class FineDiff {
 
     /**------------------------------------------------------------------------
      * Return an iterable collection of diff ops from an opcodes string
+     * @param      $opcodes
+     * @param null $encoding
+     * @return array
      */
     public static function getDiffOpsFromOpcodes($opcodes, $encoding = null) {
         if ($encoding === null) {
@@ -207,6 +220,10 @@ class FineDiff {
 
     /**------------------------------------------------------------------------
      * Re-create the "To" string from the "From" string and an "Opcodes" string
+     * @param      $from
+     * @param      $opcodes
+     * @param null $encoding
+     * @return string
      */
     public static function renderToTextFromOpcodes($from, $opcodes, $encoding = null) {
         if ($encoding === null) {
@@ -220,6 +237,11 @@ class FineDiff {
     /**------------------------------------------------------------------------
      * Generic opcodes parser, user must supply callback for handling
      * single opcode
+     * @param      $from
+     * @param      $opcodes
+     * @param      $callback
+     * @param null $encoding
+     * @param bool $textToEntities
      */
     public static function renderFromOpcodes($from, $opcodes, $callback, $encoding = null, $textToEntities=true) {
         if ( !is_callable($callback) ) {
@@ -296,6 +318,8 @@ class FineDiff {
 
     /**
      * Entry point to compute the diff.
+     * @param $from_text
+     * @param $to_text
      */
     protected function doDiff($from_text, $to_text) {
         $this->last_edit = false;
@@ -315,6 +339,8 @@ class FineDiff {
      *
      * Incrementally increasing the granularity is key to compute the
      * overall diff in a very efficient way.
+     * @param $from_segment
+     * @param $to_segment
      */
     protected function _processGranularity($from_segment, $to_segment) {
         $delimiters = $this->granularityStack[$this->stackpointer++];
@@ -349,6 +375,12 @@ class FineDiff {
      *
      * This function is naturally recursive, however for performance purpose
      * a local job queue is used instead of outright recursivity.
+     * @param      $from_text
+     * @param      $to_text
+     * @param      $delimiters
+     * @param int  $greed
+     * @param null $encoding
+     * @return array
      */
     protected static function doFragmentDiff($from_text, $to_text, $delimiters, $greed=4, $encoding = null) {
         // Empty delimiter means character-level diffing.
@@ -499,6 +531,11 @@ class FineDiff {
      * appears that for long strings, the generic doFragmentDiff() is more
      * performant. For word-sized strings, doCharDiff() is somewhat more
      * performant.
+     * @param      $from_text
+     * @param      $to_text
+     * @param int  $greed
+     * @param null $encoding
+     * @return array
      */
     protected static function doCharDiff($from_text, $to_text, $greed=4, $encoding = null) {
         if ($encoding === null) {
@@ -579,6 +616,10 @@ class FineDiff {
      * A sentinel empty fragment is always added at the end.
      * Careful: No check is performed as to the validity of the
      * delimiters.
+     * @param      $text
+     * @param      $delimiters
+     * @param null $encoding
+     * @return array|array[]|false|string[]
      */
     protected static function extractFragments($text, $delimiters, $encoding = null) {
         if ($encoding === null) {
@@ -604,6 +645,11 @@ class FineDiff {
 
     /**
      * Stock opcode renderers
+     * @param      $opcode
+     * @param      $from
+     * @param      $from_offset
+     * @param      $from_len
+     * @param null $encoding
      */
     protected static function renderToTextFromOpcode($opcode, $from, $from_offset, $from_len, $encoding = null) {
         if ($encoding === null) {
