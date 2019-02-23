@@ -566,7 +566,7 @@ class FineDiff {
                     $to_copy_start = $to_segment_start;
                     $to_copy_start_max = $to_segment_end - $copy_len;
                     while ( $to_copy_start <= $to_copy_start_max ) {
-                        $from_copy_start = strpos(mb_substr($from_text, $from_segment_start, $from_segment_len, $encoding), mb_substr($to_text, $to_copy_start, $copy_len, $encoding));
+                        $from_copy_start = mb_strpos(mb_substr($from_text, $from_segment_start, $from_segment_len, $encoding), mb_substr($to_text, $to_copy_start, $copy_len, $encoding));
                         if ( $from_copy_start !== false ) {
                             $from_copy_start += $from_segment_start;
                             break 2;
@@ -582,7 +582,7 @@ class FineDiff {
                     $from_copy_start = $from_segment_start;
                     $from_copy_start_max = $from_segment_end - $copy_len;
                     while ( $from_copy_start <= $from_copy_start_max ) {
-                        $to_copy_start = strpos(mb_substr($to_text, $to_segment_start, $to_segment_len, $encoding), mb_substr($from_text, $from_copy_start, $copy_len, $encoding));
+                        $to_copy_start = mb_strpos(mb_substr($to_text, $to_segment_start, $to_segment_len, $encoding), mb_substr($from_text, $from_copy_start, $copy_len, $encoding));
                         if ( $to_copy_start !== false ) {
                             $to_copy_start += $to_segment_start;
                             break 2;
