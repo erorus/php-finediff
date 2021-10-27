@@ -213,7 +213,7 @@ class FineDiff {
         if ($encoding === null) {
             $encoding = mb_internal_encoding();
         }
-        $diffops = new FineDiffOps($this->encoding);
+        $diffops = new FineDiffOps();
         static::renderFromOpcodes(null, $opcodes, array($diffops,'appendOpcode'), $encoding);
         return $diffops->edits;
     }
