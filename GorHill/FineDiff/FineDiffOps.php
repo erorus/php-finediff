@@ -48,13 +48,13 @@ class FineDiffOps {
             $encoding = mb_internal_encoding();
         }
         if ( $opcode === 'c' ) {
-            $edits[] = new FineDiffCopyOp($from_len);
+            $this->edits[] = new FineDiffCopyOp($from_len);
         }
         else if ( $opcode === 'd' ) {
-            $edits[] = new FineDiffDeleteOp($from_len);
+            $this->edits[] = new FineDiffDeleteOp($from_len);
         }
         else /* if ( $opcode === 'i' ) */ {
-            $edits[] = new FineDiffInsertOp(mb_substr($from, $from_offset, $from_len, $encoding), $encoding);
+            $this->edits[] = new FineDiffInsertOp(mb_substr($from, $from_offset, $from_len, $encoding), $encoding);
         }
     }
 }
