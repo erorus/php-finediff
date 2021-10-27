@@ -15,17 +15,17 @@ class FineDiffHTML extends FineDiff {
         foreach ( $this->edits as $edit ) {
             $n = $edit->getFromLen();
             if ( $edit instanceof FineDiffCopyOp ) {
-                FineDiff::renderDiffToHTMLFromOpcode('c', $this->from_text, $in_offset, $n, null, $textToEntities);
+                self::renderDiffToHTMLFromOpcode('c', $this->from_text, $in_offset, $n, null, $textToEntities);
             }
             else if ( $edit instanceof FineDiffDeleteOp ) {
-                FineDiff::renderDiffToHTMLFromOpcode('d', $this->from_text, $in_offset, $n, null, $textToEntities);
+                self::renderDiffToHTMLFromOpcode('d', $this->from_text, $in_offset, $n, null, $textToEntities);
             }
             else if ( $edit instanceof FineDiffInsertOp ) {
-                FineDiff::renderDiffToHTMLFromOpcode('i', $edit->getText(), 0, $edit->getToLen(), null, $textToEntities);
+                self::renderDiffToHTMLFromOpcode('i', $edit->getText(), 0, $edit->getToLen(), null, $textToEntities);
             }
             else /* if ( $edit instanceof FineDiffReplaceOp ) */ {
-                FineDiff::renderDiffToHTMLFromOpcode('d', $this->from_text, $in_offset, $n, null, $textToEntities);
-                FineDiff::renderDiffToHTMLFromOpcode('i', $edit->getText(), 0, $edit->getToLen(), null, $textToEntities);
+                self::renderDiffToHTMLFromOpcode('d', $this->from_text, $in_offset, $n, null, $textToEntities);
+                self::renderDiffToHTMLFromOpcode('i', $edit->getText(), 0, $edit->getToLen(), null, $textToEntities);
             }
             $in_offset += $n;
         }
@@ -64,9 +64,6 @@ class FineDiffHTML extends FineDiff {
         }
         else if ( $opcode === 'd' ) {
             $deletion = mb_substr($from, $from_offset, $from_len, $encoding);
-            if ( strcspn($deletion, " \n\r") === 0 ) { // no mb_ here is okay
-                $deletion = str_replace(array("\n","\r"), array('\n','\r'), $deletion);
-            }
             if ( $textToEntities ) {
                 echo '<del>', htmlspecialchars($deletion), '</del>';
             }
