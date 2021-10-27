@@ -28,5 +28,8 @@
         "psr-4": {
             "GorHill\\FineDiff\\": "GorHill/FineDiff"
         }
+    },
+    "require": {
+        "ext-mbstring": "*"
     }
 }
