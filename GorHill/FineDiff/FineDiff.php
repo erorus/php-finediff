@@ -634,7 +634,7 @@ class FineDiff {
         }
         $fragments = array();
         $offset = 0;
-        $split = preg_split('/([' . preg_quote($delimiters, '/') . ']+)/u', $text, null, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+        $split = preg_split('/([' . preg_quote($delimiters, '/') . ']+)/u', $text, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
         foreach($split as $m) {
             $fragments[$offset] = $m;
             $offset += mb_strlen($m, $encoding);
