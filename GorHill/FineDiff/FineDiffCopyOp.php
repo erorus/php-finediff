@@ -36,6 +36,8 @@ namespace GorHill\FineDiff;
  */
 
 class FineDiffCopyOp extends FineDiffOp {
+    public $len;
+
     public function __construct($len) {
         $this->len = $len;
     }

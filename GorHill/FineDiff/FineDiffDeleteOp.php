@@ -36,6 +36,8 @@ namespace GorHill\FineDiff;
  */
 
 class FineDiffDeleteOp extends FineDiffOp {
+    public $fromLen;
+
     public function __construct($len) {
         $this->fromLen = $len;
     }

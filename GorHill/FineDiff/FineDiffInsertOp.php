@@ -37,6 +37,7 @@ namespace GorHill\FineDiff;
 
 class FineDiffInsertOp extends FineDiffOp {
     public $encoding;
+    public $text;
     
     public function __construct($text, $encoding = null) {
         $this->text = $text;

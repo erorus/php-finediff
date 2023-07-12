@@ -37,6 +37,8 @@ namespace GorHill\FineDiff;
 
 class FineDiffReplaceOp extends FineDiffOp {
     public $encoding;
+    public $fromLen;
+    public $text;
 
     public function __construct($fromLen, $text, $encoding = null) {
         $this->fromLen = $fromLen;

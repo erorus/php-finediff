@@ -106,7 +106,10 @@ class FineDiff {
      */
     public $granularityStack;
     protected $edits;
+    protected $last_edit;
+    protected $stackpointer;
     protected $from_text;
+    protected $from_offset = 0;
     public $encoding;
     public $greed;
 
@@ -179,7 +182,7 @@ class FineDiff {
             }
 
             if ( $to_len === 1 ) {
-                return $del_opcode.'i:'.$edit->getText().'';
+                return $del_opcode.'i:'.$edit->getText();
             }
             return $del_opcode.'i'.$to_len.':'.$edit->getText();
         }
@@ -230,7 +233,7 @@ class FineDiff {
             $encoding = mb_internal_encoding();
         }
         ob_start();
-        static::renderFromOpcodes($from, $opcodes, array(\GorHill\FineDiff\FineDiff::class, 'renderToTextFromOpcode'), $encoding);
+        static::renderFromOpcodes($from, $opcodes, array(__CLASS__, 'renderToTextFromOpcode'), $encoding);
         return ob_get_clean();
     }
 
